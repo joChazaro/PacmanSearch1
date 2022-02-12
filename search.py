@@ -86,44 +86,31 @@ def depthFirstSearch(problem):
         To get started, you might want to try some of these simple commands to
         understand the search problem that is being passed in:
     """
-    print("Start State: " + str(problem.getStartState()))
-    print("Is the start state ( " + str(problem.getStartState()) + " ) a goal?: " + str(problem.isGoalState(problem.getStartState())))
 
-    # Demonstrate how successor function works
-    # print("Successor function of initial start state ( " + str(problem.getStartState()) + " ) yields a tuple with 3 pieces:")
-    # print("\t(nextState, actionFromCurrStateToNextState, costToGetFromCurrStateToNextState)")
-    for statePortion in problem.getSuccessors(problem.getStartState()):
-        print("\t" + str(statePortion))
-
-
+    explored = [] #where visited nodes will be added make the explored into a list -> easier to deal with? 
     fringeStack =  util.Stack()  # stack is empty
     firstNode = problem.getStartState() #identify first node
-    # fringestack.push(firstNode)  # adds parent node to stack.
-    explored = [] #where visited nodes get added 
-    
+    fringeStack.push((firstNode,[]))
     search = True
-    while search:  # loop do  
-        if fringeStack.isEmpty(): # checking if fringe is empty, bad if it is empty
+    while search is True:  # loop do the do 
+        print("tis but the beginning") #test print
+        if not fringeStack.isEmpty: # checking if first node is empty, if empty -> fringe is empty, bad if it is empty
             assert "Failure: fringe do be empty" # raise Exception("Fringe is empty") 
-            break       
-        temp = fringeStack.pop()
-        if temp.isGoalState():
-            print("Successor function of initial start state ( " + str(problem.getStartState()) + " ) yields a tuple with 3 pieces:")
-            print("\t(nextState, actionFromCurrStateToNextState, costToGetFromCurrStateToNextState)") # return solution
-            search = False  
-        if temp in explored or temp in fringeStack:
-            explored.add(temp)
-            for statePortion in problem.getSuccessors(temp):
-                fringeStack.push(statePortion)
-            
+            break #begone thot
+        print("we shall continue onward") #test print  
+        currentNode = fringeStack.pop()
+        if problem.isGoalState(currentNode): #by god's will if it is the first state we done 
+            print(currentNode)
+            print("Ye got it lad! - (nextState, actionFromCurrStateToNextState, costToGetFromCurrStateToNextState)")
+            search = False
+        if currentNode not in explored or currentNode not in fringeStack: #if this node isnt a repeated node thou shall continue 
+            fringeStack.push((problem.getSuccessor())) 
+            explored.append(currentNode)
+            search = True
 
-            
-
-
-        
-        # util.raiseNotDefined()
-
-
+    return(currentNode)
+    #util.raiseNotDefined()
+    print("Drop yourself in next time and spare us of your stupidity!")
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
