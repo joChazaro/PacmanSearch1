@@ -113,16 +113,6 @@ def depthFirstSearch(problem):
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
-    """
-        Search the deepest nodes in the search tree first.
-
-        Your search algorithm needs to return a list of actions that reaches the
-        goal. Make sure to implement a graph search algorithm.
-
-        To get started, you might want to try some of these simple commands to
-        understand the search problem that is being passed in:
-    """
-
     explored = set() #where visited nodes will be added make the explored into a list -> easier to deal with? 
     fringeStack =  util.Queue()  # stack is empty
     firstNode = problem.getStartState() #identify first node
