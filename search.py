@@ -1,4 +1,10 @@
-# search.py
+"""
+Names: Johana Chazaro Cortes, Roberto Rodruigez
+Class: CSC412 - Intelligent Systems
+Professor: Dr. Dan Grissom 
+Spring 2022
+""" 
+#  search.py
 # ---------
 # Licensing Information:  You are free to use or extend these projects for
 # educational purposes provided that (1) you do not distribute or publish
@@ -11,11 +17,6 @@
 # Student side autograding was added by Brad Miller, Nick Hay, and
 # Pieter Abbeel (pabbeel@cs.berkeley.edu).
 
-
-
-#TODO: We have a set to save the individual nodes, but we need the set to save the PATH taken to those nodes. 
-#That is because the nodes themselves will be entering and leaving the stack pretty consistenly. 
-#The nodes themselves won't be unique but their paths will be.
 """
 In search.py, you will implement generic search algorithms which are called by
 Pacman agents (in searchAgents.py).
@@ -96,15 +97,15 @@ def depthFirstSearch(problem):
     search = True
     
     while search is True:  # loop do the do 
-        print("tis but the beginning") #test print
+        
         if not fringeStack.isEmpty(): # checking if first node is empty, if empty -> fringe is empty, bad if it is empty
             assert "Failure: fringe do be empty" # raise Exception("Fringe is empty") -> begone thot
-        print("we shall continue onward") #test print
+        
         currentNode, path = fringeStack.pop()
         
-        if problem.isGoalState(currentNode): #by god's will if it is the first state we done 
+        if problem.isGoalState(currentNode): #by Dr. Dan's will if it is the first state we done 
             print(currentNode)
-            print("Ye got it lad! - (nextState, actionFromCurrStateToNextState, costToGetFromCurrStateToNextState)")
+            
             return(path)
         if currentNode not in explored: #if this node isnt a repeated node thou shall continue 
             explored.add(currentNode)
