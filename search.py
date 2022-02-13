@@ -87,34 +87,60 @@ def depthFirstSearch(problem):
         understand the search problem that is being passed in:
     """
 
-    explored = [] #where visited nodes will be added make the explored into a list -> easier to deal with? 
+    explored = set() #where visited nodes will be added make the explored into a list -> easier to deal with? 
     fringeStack =  util.Stack()  # stack is empty
     firstNode = problem.getStartState() #identify first node
-    fringeStack.push((firstNode,[]))
+    print(firstNode)
+    fringeStack.push((firstNode, []))
     search = True
+    
     while search is True:  # loop do the do 
         print("tis but the beginning") #test print
-        if not fringeStack.isEmpty: # checking if first node is empty, if empty -> fringe is empty, bad if it is empty
-            assert "Failure: fringe do be empty" # raise Exception("Fringe is empty") 
-            break #begone thot
-        print("we shall continue onward") #test print  
-        currentNode = fringeStack.pop()
+        if not fringeStack.isEmpty(): # checking if first node is empty, if empty -> fringe is empty, bad if it is empty
+            assert "Failure: fringe do be empty" # raise Exception("Fringe is empty") -> begone thot
+        print("we shall continue onward") #test print
+        currentNode, path = fringeStack.pop()
+        
         if problem.isGoalState(currentNode): #by god's will if it is the first state we done 
             print(currentNode)
             print("Ye got it lad! - (nextState, actionFromCurrStateToNextState, costToGetFromCurrStateToNextState)")
-            search = False
-        if currentNode not in explored or currentNode not in fringeStack: #if this node isnt a repeated node thou shall continue 
-            fringeStack.push((problem.getSuccessor())) 
-            explored.append(currentNode)
-            search = True
+            return(path)
+        if currentNode not in explored: #if this node isnt a repeated node thou shall continue 
+            explored.add(currentNode)
+            for child in (problem.getSuccessors(currentNode)):
+                fringeStack.push((child[0], path + [child[1]]))
 
-    return(currentNode)
-    #util.raiseNotDefined()
-    print("Drop yourself in next time and spare us of your stupidity!")
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    """
+        Search the deepest nodes in the search tree first.
+
+        Your search algorithm needs to return a list of actions that reaches the
+        goal. Make sure to implement a graph search algorithm.
+
+        To get started, you might want to try some of these simple commands to
+        understand the search problem that is being passed in:
+    """
+
+    explored = set() #where visited nodes will be added make the explored into a list -> easier to deal with? 
+    fringeStack =  util.Queue()  # stack is empty
+    firstNode = problem.getStartState() #identify first node
+    fringeStack.push((firstNode, []))
+    search = True
+    
+    while search is True:  # loop do the do 
+        if not fringeStack.isEmpty(): # checking if first node is empty, if empty -> fringe is empty, bad if it is empty
+            assert "Failure: fringe do be empty" # raise Exception("Fringe is empty") -> begone thot
+        currentNode, path = fringeStack.pop()
+        
+        if problem.isGoalState(currentNode): #by god's will if it is the first state we done 
+            print(currentNode)
+            return(path)
+        if currentNode not in explored: #if this node isnt a repeated node thou shall continue 
+            explored.add(currentNode)
+            for child in (problem.getSuccessors(currentNode)):
+                fringeStack.push((child[0], path + [child[1]]))
 
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
