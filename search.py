@@ -1,5 +1,5 @@
 """
-Names: Johana Chazaro Cortes, Roberto Rodruigez
+Names: Johana Chazaro Cortes, Roberto Rodriguez
 Class: CSC412 - Intelligent Systems
 Professor: Dr. Dan Grissom 
 Spring 2022
