@@ -145,7 +145,11 @@ def uniformCostSearch(problem):
 
     while True:  # loop do the do 
         if not fringePriorityQueue.isEmpty(): # checking if first node is empty, if empty -> fringe is empty, bad if it is empty
+<<<<<<< HEAD
             assert "Failure: fringe do be empty" # raise Exception("Fringe is empty") -> yeet
+=======
+            assert "Failure: fringe do be empty" # raise Exception("Fringe is empty") -> begone thot
+>>>>>>> 5cc4c26f88229b6b9976eb2ee304e7561cbecf52
         currentNode, path = fringePriorityQueue.pop()
         
         if problem.isGoalState(currentNode): #by Dan's will if it is the first state we done 
@@ -172,7 +176,11 @@ def aStarSearch(problem, heuristic=nullHeuristic):
     "*** YOUR CODE HERE ***"
     explored = set() #where visited nodes will be added make the explored into a list -> easier to deal with? 
     fringePriorityQueue =  util.PriorityQueue()  # stack is empty
+<<<<<<< HEAD
     firstNode = problem.getStartState() #identify first node    
+=======
+    firstNode = problem.getStartState() #identify first node
+>>>>>>> 5cc4c26f88229b6b9976eb2ee304e7561cbecf52
     fringePriorityQueue.push((firstNode, []), 0.0)
     # fringePriorityQueue.push((firstNode, [], 0.0))
 
@@ -191,7 +199,11 @@ def aStarSearch(problem, heuristic=nullHeuristic):
                 joBoat = priceOfLife + heuristic(child[0], problem)
 
                 fringePriorityQueue.push((child[0], childPath), joBoat)
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 5cc4c26f88229b6b9976eb2ee304e7561cbecf52
 
 # Abbreviations
 bfs = breadthFirstSearch
