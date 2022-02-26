@@ -283,7 +283,7 @@ class CornersProblem(search.SearchProblem):
         self.corners = ((1,1), (1,top), (right, 1), (right, top))
         for corner in self.corners:
             if not startingGameState.hasFood(*corner):
-                print 'Warning: no food in corner ' + str(corner)
+                print ('Warning: no food in corner ' + str(corner))
         self._expanded = 0 # DO NOT CHANGE; Number of search nodes expanded
         # Please add any code here which you would like to use
         # in initializing the problem
@@ -295,13 +295,16 @@ class CornersProblem(search.SearchProblem):
         space)
         """
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        return self.startingPosition
+        # util.raiseNotDefined()
 
     def isGoalState(self, state):
-        """
+        """ 
         Returns whether this search state is a goal state of the problem.
         """
+        return state in self.corners
         "*** YOUR CODE HERE ***"
+        
         util.raiseNotDefined()
 
     def getSuccessors(self, state):
