@@ -304,6 +304,14 @@ class CornersProblem(search.SearchProblem):
         """ 
         Returns whether this search state is a goal state of the problem.
         """
+
+        # if state in self.corners:
+        #     index = self.corners.index(state)
+        #     self.reached[index] = True
+        # result = all(element == True for element in self.reached)   
+        
+        return state[1] == (True,True,True,True)
+
         "*** YOUR CODE HERE ***"
         return state[1] == (True,True,True,True)
         

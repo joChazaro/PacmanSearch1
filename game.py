@@ -428,7 +428,7 @@ class GameStateData:
             try:
                 int(hash(state))
             except TypeError, e:
-                print e
+                print (e)
                 #hash(state)
         return int((hash(tuple(self.agentStates)) + 13*hash(self.food) + 113* hash(tuple(self.capsules)) + 7 * hash(self.score)) % 1048575 )
 
