@@ -414,9 +414,6 @@ def cornersHeuristic(state, problem):
         index += 1
     return totalDistance # Default to trivial solution
 
-
-    return 0 # Default to trivial solution
-
 class AStarCornersAgent(SearchAgent):
     "A SearchAgent for FoodSearchProblem using A* and your foodHeuristic"
     def __init__(self):
