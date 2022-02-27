@@ -99,7 +99,7 @@ def depthFirstSearch(problem):
     while search is True:  # loop do the do 
         
         if not fringeStack.isEmpty(): # checking if first node is empty, if empty -> fringe is empty, bad if it is empty
-            assert "Failure: fringe do be empty" # raise Exception("Fringe is empty") -> begone thot
+            assert "Failure: fringe do be empty" # raise Exception("Fringe is empty") -> yeet
         
         currentNode, path = fringeStack.pop()
         
@@ -119,20 +119,17 @@ def breadthFirstSearch(problem):
     fringeQueue =  util.Queue()  # stack is empty
     firstNode = problem.getStartState() #identify first node
     fringeQueue.push((firstNode, []))
-    search = True
     
-    while search is True:  # loop do the do 
-        if not fringeQueue.isEmpty(): # checking if first node is empty, if empty -> fringe is empty, bad if it is empty
-            assert "Failure: fringe do be empty" # raise Exception("Fringe is empty") -> begone thot
+    while not fringeQueue.isEmpty(): # checking if first node is empty, if empty -> fringe is empty, bad if it is empty
+        # assert "Failure: fr.0inge do be empty" # raise Exception("Fringe is empty") -> yeet
         currentNode, path = fringeQueue.pop()
-        
-        if problem.isGoalState(currentNode): #by god's will if it is the first state we done 
-            print(currentNode)
-            return(path)
         if currentNode not in explored: #if this node isnt a repeated node thou shall continue 
             explored.add(currentNode)
-            for child in (problem.getSuccessors(currentNode)):
-                fringeQueue.push((child[0], path + [child[1]]))
+            if problem.isGoalState(currentNode): #by god's will if it is the first state we done 
+                print(currentNode)
+                return(path)
+            for childState, action, cost in (problem.getSuccessors(currentNode)):
+                fringeQueue.push((childState, path + [action]))
 
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
@@ -145,7 +142,7 @@ def uniformCostSearch(problem):
 
     while True:  # loop do the do 
         if not fringePriorityQueue.isEmpty(): # checking if first node is empty, if empty -> fringe is empty, bad if it is empty
-            assert "Failure: fringe do be empty" # raise Exception("Fringe is empty") -> begone thot
+            assert "Failure: fringe do be empty" # raise Exception("Fringe is empty") -> yeet
         currentNode, path = fringePriorityQueue.pop()
         
         if problem.isGoalState(currentNode): #by Dan's will if it is the first state we done 
@@ -173,12 +170,14 @@ def aStarSearch(problem, heuristic=nullHeuristic):
     explored = set() #where visited nodes will be added make the explored into a list -> easier to deal with? 
     fringePriorityQueue =  util.PriorityQueue()  # stack is empty
     firstNode = problem.getStartState() #identify first node
+    # print('printing first node:')
+    # print(firstNode)
     fringePriorityQueue.push((firstNode, []), 0.0)
     # fringePriorityQueue.push((firstNode, [], 0.0))
 
     while True:  # loop do the do 
         if not fringePriorityQueue.isEmpty(): # checking if first node is empty, if empty -> fringe is empty, bad if it is empty
-            assert "Failure: fringe do be empty" # raise Exception("Fringe is empty") -> begone thot
+            assert "Failure: fringe do be empty" # raise Exception("Fringe is empty") -> yeet
         currentNode, path = fringePriorityQueue.pop()
         
         if problem.isGoalState(currentNode): #by Dan's will if it is the first state we done 
@@ -191,7 +190,7 @@ def aStarSearch(problem, heuristic=nullHeuristic):
                 joBoat = priceOfLife + heuristic(child[0], problem)
 
                 fringePriorityQueue.push((child[0], childPath), joBoat)
-
+ 
 
 # Abbreviations
 bfs = breadthFirstSearch
