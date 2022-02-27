@@ -1,4 +1,9 @@
-# searchAgents.py
+'''
+Names: Johana Chazaro Cortes, Roberto Rodriguez
+Class: CSC412 - Intelligent Systems
+Professor: Dr. Dan Grissom 
+Spring 2022'''
+#  searchAgents.py
 # ---------------
 # Licensing Information:  You are free to use or extend these projects for
 # educational purposes provided that (1) you do not distribute or publish
