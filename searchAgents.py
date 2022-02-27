@@ -34,14 +34,12 @@ description for details.
 Good luck and happy searching!
 """
 
-from queue import Empty
 from game import Directions
 from game import Agent
 from game import Actions
 import util
 import time
 import search
-
 
 class GoWestAgent(Agent):
     "An agent that goes West until it can't."
@@ -161,7 +159,7 @@ class PositionSearchProblem(search.SearchProblem):
         self.costFn = costFn
         self.visualize = visualize
         if warn and (gameState.getNumFood() != 1 or not gameState.hasFood(*goal)):
-            print 'Warning: this does not look like a regular search maze'
+            print ('Warning: this does not look like a regular search maze')
 
         # For display purposes
         self._visited, self._visitedlist, self._expanded = {}, [], 0 # DO NOT CHANGE
@@ -292,10 +290,6 @@ class CornersProblem(search.SearchProblem):
         # in initializing the problem
         "*** YOUR CODE HERE ***"
         self.reached = (False, False, False, False)
-        # 2*****4
-        # *******
-        # 1*****3
-        
 
     def getStartState(self):
         """
@@ -395,17 +389,9 @@ def cornersHeuristic(state, problem):
     shortest path from the state to a goal of the problem; i.e.  it should be
     admissible (as well as consistent).
     """
-    #corners = x2, y2
-    #state = x1, y1
-    
-    #Distancio = sqrt((x2 - x1)^2+(y2 - y1)^2)
     corners = problem.corners # These are the corner coordinates
     walls = problem.walls # These are the walls of the maze, as a Grid (game.py)
-    
-    # print('walls')
-    # print(walls)
-    # print('\n\n')
-    # state = ( (x,y), [True, False, False, True] )
+
     "*** YOUR CODE HERE ***"
     coord, cornersReached = state
     # corners =         corn1, corn2, corn3, corn4
@@ -421,63 +407,15 @@ def cornersHeuristic(state, problem):
     for corner in corners: # get x,y of each corner
                             # get the t/f of each corner
         x2, y2 = corner
-        
-        """
-        ***************************************
-        *******Work around for walls????*******
-        ***************************************
-
-        c * * * *        
-        * * * * *
-        * * * * *
-        * * * * *
-        s * * w c -> if c = s+dist then stop
-                     if s+dist = w then x-distance++/y-distance++ depending on solving for x or y
-        
-        xDist = abs( x1 - x2 ) 
-        yDist = abs( y1 - y2 )
-
-        possible issue, we are only checking if the corner is above or to the right since we can only move in those directions
-        possible fix is to make xDist and yDist not abs. if negative, we know the wall is below or to left. 
-        we get rid of abs to find direction, then make it abs again before we add it in totalDist
-        distCheckedx = 0
-        print('Corner x2 value: ')
-        print(x2)
-        while x1 + distCheckedx < x2:
-            if walls[x1 + distCheckedx][y1 + distCheckedx]: # wall is here
-                xDist += 1
-                print('xDist:')
-                print(xDist)
-            distCheckedx += 1
-            print('distCheckedx: ')
-            print(distCheckedx)
-        
-        print('Corner y2 value: ')
-        print(y2)
-        distCheckedy = 0
-        while y1 + distCheckedy < y2:
-            if walls[x1 + distCheckedy][y1 + distCheckedy]: # wall is here
-                yDist += 1
-                print('yDist:')
-                print(yDist)
-            distCheckedy += 1
-            print('distCheckedy: ')
-            print(distCheckedy)
-       """
-        # if walls[x1 + ][y-vales] is True: # check for wall between x-state and x-corner
-            # 
-            # walledPath += 1 # if wall is here add another 
         distance = abs( x1 - x2 ) + abs( y1 - y2 )
-        # print('distance calculated: ')
-        # print(distance)
         # distance = xDist + yDist
         if cornersReached[index] is False: # if corner is not visited
-            # distance = ((x2 - x1)**2 + (y2 - y1)**2)**(1/2)
             totalDistance += distance
         index += 1
-    # print('total distance: ')
-    # print(totalDistance)
     return totalDistance # Default to trivial solution
+
+
+    return 0 # Default to trivial solution
 
 class AStarCornersAgent(SearchAgent):
     "A SearchAgent for FoodSearchProblem using A* and your foodHeuristic"
@@ -607,18 +545,9 @@ class ClosestDotSearchAgent(SearchAgent):
         food = gameState.getFood()
         walls = gameState.getWalls()
         problem = AnyFoodSearchProblem(gameState)
-        posx, posy = startPosition
-        
-        "*** YOUR CODE HERE ***"
-        foodList = food.asList()
-        minDistance = []
-        for food in foodList:
-            foodx, foody = food
-            distance =  abs( posx - foodx ) + abs( posy - foody )
-            minDistance.append(distance)
-        return min(minDistance)
 
-        #util.raiseNotDefined()
+        "*** YOUR CODE HERE ***"
+        return search.astar(problem)
 
 class AnyFoodSearchProblem(PositionSearchProblem):
     """
@@ -654,16 +583,7 @@ class AnyFoodSearchProblem(PositionSearchProblem):
         x,y = state
 
         "*** YOUR CODE HERE ***"
-        #Goal: have self.food be an empty array 
-
-
-        foodList = self.food.asList()
-        if foodList is Empty:
-            return True
-        else: return False
-        # print("foodList: ")
-        # return foodList
-        #util.raiseNotDefined()
+        return self.food[x][y]
 
 def mazeDistance(point1, point2, gameState):
     """
