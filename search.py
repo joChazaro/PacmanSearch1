@@ -121,11 +121,7 @@ def breadthFirstSearch(problem):
     fringeQueue.push((firstNode, []))
     
     while not fringeQueue.isEmpty(): # checking if first node is empty, if empty -> fringe is empty, bad if it is empty
-<<<<<<< HEAD
         # assert "Failure: fringe do be empty" # raise Exception("Fringe is empty") -> yeet
-=======
-        # assert "Failure: fr.0inge do be empty" # raise Exception("Fringe is empty") -> yeet
->>>>>>> 930ce4fa95aa5191a3fc2e6dde47c00ba1c18117
         currentNode, path = fringeQueue.pop()
         if currentNode not in explored: #if this node isnt a repeated node thou shall continue 
             explored.add(currentNode)
@@ -194,10 +190,6 @@ def aStarSearch(problem, heuristic=nullHeuristic):
                 joBoat = priceOfLife + heuristic(child[0], problem)
 
                 fringePriorityQueue.push((child[0], childPath), joBoat)
-<<<<<<< HEAD
-=======
- 
->>>>>>> 930ce4fa95aa5191a3fc2e6dde47c00ba1c18117
 
 # Abbreviations
 bfs = breadthFirstSearch
